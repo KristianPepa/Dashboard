@@ -5,6 +5,7 @@ import {useStateContext} from '../../contexts/ContextProvider';
 import { ChartHeader } from '../../components';
 
 const Area = () => {
+  
   const {currentMode} = useStateContext();
 
   return (
