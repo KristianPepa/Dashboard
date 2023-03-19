@@ -1,9 +1,17 @@
+import { DropDownListComponent } from '@syncfusion/ej2-react-dropdowns';
 import React from 'react'
 import {BsCurrencyDollar} from 'react-icons/bs';
 import {GoPrimitiveDot} from 'react-icons/go';
-import {Stacked,Pie,Button,SparkLine} from '../components';
+import { IoIosMore } from 'react-icons/io';
+import {Stacked,Pie,Button,SparkLine, LineChart} from '../components';
 import { useStateContext } from '../contexts/ContextProvider';
-import {earningData, SparklineAreaData} from '../data/dummy';
+import {earningData, SparklineAreaData,ecomPieChartData, dropdownData,recentTransactions, weeklyStats, medicalproBranding} from '../data/dummy';
+import product9 from '../data/product9.jpg'
+const DropDown = ({currentMode}) => (
+  <div className="w-28 border-1 border-color px-2 py-1 rounded-md">
+    <DropDownListComponent id="time" fields={{text: "Time",value: "Id"}} style={{border: 'none',color: (currentMode === "Dark") && 'white'}} value= "1" dataSource={dropdownData} popupHeight="220px" popupWidth="120px"/>
+  </div>
+)
 
 const Ecommerce = () => {
   const {currentColor,currentMode} = useStateContext();
@@ -17,6 +25,9 @@ const Ecommerce = () => {
               <p className="font-bold text-gray-400">Earnings</p>
               <p className="text-2xl">$64.215.21</p>
             </div>
+            <button type="button" className="text-2xl opacity=0.9 text-white hover:drop-shadow-xl rounded-full p-4" style={{backgroundColor: currentColor}}>
+              <BsCurrencyDollar/>
+            </button>
           </div>
           <div className="mt-6">
             <Button color="white" bgColor={currentColor} text="Download" borderRadius="10px" size="md"></Button>
@@ -42,6 +53,7 @@ const Ecommerce = () => {
           ))}
         </div>
       </div>
+
       <div className="flex gap-10 flex-wrap justify-center">
         <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg m-3 p-4 rounded-2xl md:w-780">
           <div className="flex justify-between">
@@ -59,21 +71,17 @@ const Ecommerce = () => {
           </div>
           <div className="mt-10 flex gap-10 flex-wrap justify-center">
             <div className="border-r-1 border-color m-4 pr-10">
-              <div className="">
+              <div>
                 <p>
                   <span className="text-3xl font-semibold">$93.438</span>
                   <span className="p-1.5 hover:drop-shadow-xl cursor-pointer rounded-full text-white bg-green-400 ml-3 text-xs ">23%</span>
                 </p>
-                <p>
-                  <span className="text-gray-500 mt-1">Budget</span>
-                </p>
-                <p>
-                  <span className="text-3xl font-semibold">$48.438</span>
-                </p>
-                <p>
-                  <span className="text-gray-500 mt-1">Expense</span>
-                </p>
+                <p className="text-gray-500 mt-1">Budget</p>
               </div>
+              <div className="mt-8">
+                <span className="text-3xl font-semibold">$48.438</span>
+                <span className="text-gray-500 mt-1">Expense</span>    
+              </div>  
               <div className="mt-5">
                 <SparkLine currentColor={currentColor} id="line-sparkline" type="Line" height="80px" width="250px" data={SparklineAreaData} color={currentColor}/>
               </div>
@@ -83,6 +91,160 @@ const Ecommerce = () => {
             </div>
             <div>
               <Stacked width="320px" height="360px"/>
+            </div>
+          </div>
+        </div>
+        <div className="rounded-2xl md:w-400 p-4 m-3" style={{backgroundColor: currentColor}}>
+        <div className="flex justify-between items-center">
+          <p className="text-2xl text-white font-semibold">Earnings</p>
+          <div>
+            <p className="text-2xl text-white font-semibold mt-8">$63.448.78</p>
+            <p className="text-gray-200">Monthly revenue</p>
+          </div>
+        </div>
+        <div className="mt-4">
+          <SparkLine currentColor={currentColor} id="area-chart" type="Column" height="100px" width="320px" data={SparklineAreaData} color="rgb(242,252,253)"/>
+        </div>
+        </div>
+        <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl md:w-400 p-8 m-3 flex justify-center items-center gap-10">
+            <div>
+              <p className="text-2xl font-semibold">$43.246</p>
+              <p className="text-gray-400">Yearly Sales</p>
+            </div>
+            <div className="w-40">
+              <Pie id="pie-chart"  height="160px"  data={ecomPieChartData} legendVisibility={false}/>
+            </div>
+          </div>
+      </div>
+
+      <div className="flex gap-10 m-4 flex-wrap justify-center">
+        <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl">
+          <div className="flex justify-between items-center gap-2">
+            <p className="text-xl font-semibold">Recent Transactions</p>
+            <DropDown currentMode={currentMode}/>
+          </div>
+          <div className="mt-10 w-72 md:w-400">
+            {recentTransactions.map((item) => (
+              <div key={item.title} className="flex justify-between mt-4">
+                <div className="flex gap-4">
+                  <button type="button" style={{color: item.iconColor, backgroundColor: item.iconBg}} className="text-2xl rounded-lg p-4 hover:drop-shadow-xl">
+                    {item.icon}
+                  </button>
+                  <div>
+                    <p className="text-md font-semibold">{item.title}</p>
+                    <p className="text-sm text-gray-400">{item.desc}</p>
+                  </div>
+                </div>  
+                <p className={`text-${item.pcColor}`}>{item.amount}</p>
+              </div>  
+            ))}
+          </div>
+          <div className="flex justify-between items-center mt-5 border-t-1 border-color">
+            <div className="mt-3">
+              <Button color="white" bgColor={currentColor} text="Add" borderRadius="10px"/>
+            </div>
+            <p className="text-gray-400 text-sm">36 Recent Transactions</p>
+          </div>
+        </div>
+        <div className="bg-white dark:text-gray-200 dark:bg-secondary-dark-bg p-6 rounded-2xl w-96 md:w-760">
+          <div className="flex justify-between items-center gap-2 mb-10">
+            <p className="text-xl font-semibold">Sales Overview</p>
+            <DropDown currentMode={currentMode}/>
+          </div>
+          <div className="md:w-full overflow-auto">
+            <LineChart/>
+          </div>
+        </div>
+      </div>
+      
+      <div className="flex flex-wrap justify-center">
+        <div className="md:w-400 bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl p-6 m-3">
+          <div className="flex justify-between">
+            <p className="text-xl font-semibold">Weekly Stats</p>
+            <button type="button" className="text-xl font-semibold text-gray-500">
+              <IoIosMore/>
+            </button>
+          </div>
+          <div className="mt-10">
+            {weeklyStats.map((item) => (
+              <div key={item.title} className="flex justify-between mt-4 w-full">
+                <div className="flex gap-4">
+                  <button type="button" style={{background: item.iconBg}} className="text-2xl hover:drop-shadow-xl text-white rounded-full p-3">
+                    {item.icon}
+                  </button>
+                  <div>
+                    <p className="text-md font-semibold">{item.title}</p>
+                    <p className="text-sm text-gray-400">{item.desc}</p>
+                  </div>
+                </div>
+                <p className={`text-${item.pcColor}`}>{item.amount}</p>
+              </div>
+            ))}
+            <div className="mt-4">
+            <SparkLine currentColor={currentColor} id="area-sparkline" type="Area" height="160px" width="320px" data={SparklineAreaData} color="rgb(242,252,253)"/>
+            </div>
+          </div>
+        </div>
+        <div className="w-400 bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl p-6 m-3">
+          <div className="flex justify-between">
+            <p className="text-xl font-semibold">MedicalPro Branding</p>
+            <button type="button" className="text-xl font-semibold text-gray-400">
+              <IoIosMore/>
+            </button>
+          </div>
+          <p className="text-xs cursor-pointer hover:shadow-drop-xl font-semibold rounded-lg w-24 bg-orange-400 py-0.5 px-2 text-gray-200 mt-10">16 APR, 2001</p>
+          <div className="flex gap-4 boder-b-1 border-color mt-6">
+            {medicalproBranding.data.map((item) => (
+              <div key={item.title} className="border-r-1 border-color pr-4 pb-2">
+                <p className="text-xs text-gray-400">{item.title}</p>
+                <p className="text-sm">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="border-b-1 border-color pb-4 mt-2">
+            <p className="text-md font-semibold mb-2">Teams</p>
+            <div className="flex gap-4">
+              {medicalproBranding.teams.map((item) => (
+                <p key={item.name} style={{background: item.color}} className="cursor-pointer hover:drop-shadow-xl text-white py-0.5 px-3 rounded-lv text-xs">
+                  {item.name}
+                </p>
+              ))}
+            </div>
+          </div>
+          <div className="mt-2">
+            <p className="text-md font-semibold mb-2">Leaders</p>
+            <div className="flex gap-4">
+              {medicalproBranding.leaders.map((item,index) => (
+                <img key={index} className="rounded-full w-8 h-8" src={item.image} alt=""/>
+              ))}
+            </div>
+          </div>
+          <div className="flex justify-between items-center mt-5 border-t-1 border-color">
+            <div className="mt-3">
+              <Button color="white" bgColor={currentColor} text="Add" borderRadius="10px"/>
+            </div>
+            <p className="text-gray-400 text-sm">36 Recent Transactions</p>
+          </div>
+        </div>
+        <div className='w-400 bg-white dark:text-gray-200 dark:bg-secondary-dark-bg rounded-2xl p-6 m-3'>
+          <div className="flex justify-between">
+            <p className="text-xl font-semibold">Daily Activities</p>
+            <button type="button" className="text-xl font-semibold text-gray-500">
+              <IoIosMore/>
+            </button>
+          </div>
+          <div className="mt-10">
+            <img className="md:w-96 h-50" src={product9} alt=""/>
+            <div className="mt-8">
+              <p className="font-semibold text-lg">React 18 Coming Soon</p>
+              <p className="text-gray-400">By Jonatha Doe</p>
+              <p className="mt-8 text-sm text-gray-400">
+                This will be the small description for the news you have shown here.
+                There could be some great info. 
+              </p>
+              <div className="mt-3">
+                <Button color="white" bgColor={currentColor} text="Read More" borderRadius="10px"/>
+              </div>
             </div>
           </div>
         </div>

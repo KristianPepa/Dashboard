@@ -22,8 +22,10 @@ class SparkLine extends React.PureComponent{
           format: '${x} : data ${y}',
           trackLineSettings: {
             visible: true
-          }
+          },
         }}
+        markerSettings={{visible: ['All'],size: 2.5, fill: currentColor}}
+        
       >
       
         <Inject services={[SparklineTooltip]}></Inject>
