@@ -2,7 +2,7 @@
 
 ![image](https://github.com/Kristi200/Dashboard/assets/80427725/4bfe65d6-2225-41ff-9c85-2a9d5adfdc84)
 
-
+### Demo - https://admin-dashboard-admin.netlify.app/
 
 
 # Getting Started with Create React App
