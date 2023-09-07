@@ -1,3 +1,10 @@
+# React Admin Dashboard
+
+![image](https://github.com/Kristi200/Dashboard/assets/80427725/4bfe65d6-2225-41ff-9c85-2a9d5adfdc84)
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
