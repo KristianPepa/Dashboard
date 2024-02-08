@@ -1,7 +1,7 @@
 import React from 'react'
 import { ChartHeader } from '../../components';
-import {ChartComponent,SeriesCollectionDirective,SeriesDirective,Inject,Legend,Category,Tooltip,ColumnSeries,DataLabel,Highlight} from '@syncfusion/ej2-react-charts';
-import {barChartData,barCustomSeries,barPrimaryXAxis,barPrimaryYAxis} from '../../data/dummy';
+import {ChartComponent,SeriesCollectionDirective,SeriesDirective,Inject,Legend,Category,Tooltip,ColumnSeries,DataLabel} from '@syncfusion/ej2-react-charts';
+import {barCustomSeries,barPrimaryXAxis,barPrimaryYAxis} from '../../data/dummy';
 import {useStateContext} from '../../contexts/ContextProvider';
 
 const Bar = () => {

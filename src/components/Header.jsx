@@ -1,5 +1,5 @@
 import React from 'react'
-// import {} from ''
+
 const Header = ({category,title}) => {
   return (
     <div className="mb-10">
