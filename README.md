@@ -16,10 +16,33 @@ Welcome to our dynamic admin dashboard, meticulously crafted by a solo developer
 - **Built-in Editing Tools:** Take control of your content with rich text formatting and convenient color pickers.
   
 - **Dark Mode Support:** Optimize your viewing experience with our sleek dark mode interface.
-  
+
 - **Customizable Color Options:** Tailor your dashboard to your preferences with customizable color schemes for tabs, text, and graphics.
 
 Whether you're tracking orders, managing customers, or overseeing projects, our admin dashboard offers the tools you need in a beautifully designed package.
 
+
+## Getting Started
+
+To run the project locally, follow these steps:
+
+1. Clone the repository using `git clone [project link]`.
+2. Install all the required packages by running `npm install`.
+3. Start the project with `npm run dev`.
+
+## Usage
+
+Check out the live demo [here](https://admin-dashboard-admin.netlify.app/) to explore the application without downloading it.
+
+## Built With
+
+- Framework: Vite.js
+- Technologies: React.js, Syncfusion, Tailwind CSS
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+  
 
 
